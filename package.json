@@ -1,0 +1,27 @@
+{
+  "name": "eval.observe",
+  "version": "0.0.2",
+  "description": "Observe ECMAScript expressions",
+  "main": "src/index.js",
+  "browser": "dist/browser.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daluege/eval.observe.git"
+  },
+  "author": "Filip Dalüge <daluege@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daluege/eval.observe/issues"
+  },
+  "homepage": "https://github.com/daluege/eval.observe#readme",
+  "devDependencies": {
+    "rollup": "^0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-watch": "^3.2.2"
+  }
+}
