@@ -61,9 +61,9 @@ export class Expression {
         for (let j = 0; j < scopes.length; j++) observe(scopes[j], name);
       }
 
-      return compute();
+      return compute(null, null);
 
-      function compute() {
+      function compute(changedObj, changedKey) {
         if (computing) return;
         getProperty.scopes = scopes;
         for (let key in thisArg) getProperty[key] = null; // Cause `(key in this) == true`
@@ -76,7 +76,7 @@ export class Expression {
           return value;
         } finally {
           computing = false;
-          if (value !== lastValue) callback(value);
+          if (value !== lastValue) callback(value, changedObj, changedKey);
         }
       }
       function getProperty(obj, key) {
@@ -105,7 +105,7 @@ export class Expression {
             desc.value = newValue;
           }
           propObserved = false;
-          compute(); // Compute and notify callback
+          compute(obj, key); // Compute and notify callback
           // Remove the observer if the current property is not read upon evaluation
           // TODO: Remove actively instead of lazily (dependency collection)
           if (!propObserved) Object.defineProperty(obj, key, desc);
